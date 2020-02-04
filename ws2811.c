@@ -667,6 +667,7 @@ static int set_driver_mode(ws2811_t *ws2811, int gpionum)
 
     if (gpionum == 18 || gpionum == 12) {
         ws2811->device->driver_mode = PWM;
+        fprintf(stderr, "Driver mode set to PWM\n");
         // Check gpio for PWM1 (2nd channel) is OK if used
         gpionum2 = ws2811->channel[1].gpionum;
         if (gpionum2 == 0 || gpionum2 == 13 || gpionum2 == 19) {
@@ -675,9 +676,11 @@ static int set_driver_mode(ws2811_t *ws2811, int gpionum)
     }
     else if (gpionum == 21 || gpionum == 31) {
         ws2811->device->driver_mode = PCM;
+        fprintf(stderr, "Driver mode set to PCM\n");
     }
     else if (gpionum == 10) {
         ws2811->device->driver_mode = SPI;
+        fprintf(stderr, "Driver mode set to SPI\n");
     }
     else {
         fprintf(stderr, "gpionum %d not allowed\n", gpionum);
